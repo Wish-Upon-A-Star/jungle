@@ -25,6 +25,11 @@
 """
 
 def gcd(a, b):
+    if b>a:
+        b,a=a,b
+
+    if b==0:
+        return a
     """
     유클리드 호제법을 사용한 최대공약수 계산
     
@@ -37,7 +42,8 @@ def gcd(a, b):
     # TODO: 유클리드 호제법 구현
     # base case: b가 0이면 a 반환
     # recursive를 이용 
-    pass
+    return gcd(b,a%b)
+    
 
 def gcd_iterative(a, b):
     """
@@ -49,9 +55,16 @@ def gcd_iterative(a, b):
     Returns:
         최대공약수
     """
+    if b>a:
+        b,a=a,b
+    while b!=0:
+        a,b=b,a%b
+
+        if b==0:
+            return a
+
     # TODO: 반복문으로 구현
     # b가 0이 될 때까지 반복
-    pass
 
 def lcm(a, b):
     """
@@ -63,25 +76,55 @@ def lcm(a, b):
     Returns:
         최소공배수
     """
+
+
     # TODO: LCM 계산
-    pass
+    
+    return int((a * b) / gcd(a, b))
 
 def extended_gcd(a, b):
     """
     확장 유클리드 호제법
-    ax + by = gcd(a, b)를 만족하는 x, y를 찾음
-    
+    a x + b y = gcd(a, b)를 만족하는 x, y를 찾음
+    a
     Args:
         a, b: 두 양의 정수
     
     Returns:
         (gcd, x, y) 튜플
+
+    48 18 
+    48 18,2
+    b-(a -2b)
+
+    18 12,1
+    12 6
+    -1 3
+
     """
+    
     # TODO: 확장 유클리드 호제법 구현
     # base case: b가 0이면 (a, 1, 0) 반환    
     # recursive case
     # 역추적하며 x, y 계산
-    pass
+    if b==0:
+        return (a,1,0)
+    
+    max=1
+    while a>=b*max:
+        
+        max+=1
+    max-=1
+    c=a-b*max
+    
+
+    c_val=extended_gcd(b,c)
+    #print("c_val값: ",c_val)
+    if c_val[0]==b:
+        return (c_val[0],1,int(-(a/b)+1))
+    elif c_val[0]==c:
+        return(c_val[0],1,-max)
+    return (c_val[0],c_val[2],(c_val[1]-c_val[2]*max))
 
 def is_prime(n):
     """
@@ -97,7 +140,16 @@ def is_prime(n):
     # n이 2보다 작으면 False
     # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    
     # 3부터 sqrt(n)까지 홀수만 확인
-    pass 
+    no_prime=[True for i in range(100001)]
+    no_prime[:1]=[False]
+    
+    for i in range(2,int(n/2)+1):
+        if not no_prime[i]:continue
+        j=1
+        while i*j<=n:
+           no_prime[i*j]=False
+           j+=1        
+    return no_prime[n]
 
 # 테스트 케이스
 if __name__ == "__main__":

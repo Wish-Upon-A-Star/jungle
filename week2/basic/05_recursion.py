@@ -29,12 +29,28 @@ def factorial(n):
     return 1
     
 
-def fibonacci(n):
+#def fibonacci(n):
+#
+#    if n>1:
+#        return fibonacci(n-1) + fibonacci(n-2)
+#    elif n==1: return 1
+#    return 0
 
-    if n>1:
-        return fibonacci(n-1) + fibonacci(n-2)
+def fibonacci(n):
+	dp=[-1 for i in range(n+3)]
+	dp[0]=0
+	dp[1]=1
+	return fibo(n,dp)
+def fibo(n,dp):
+    if n==0:return 0
     elif n==1: return 1
-    return 0
+
+    else:
+        if dp[n]!=-1:
+            return dp[n]
+        else:
+            return fibo(n-2,dp)+fibo(n-1,dp)
+
 
 # 테스트 케이스
 if __name__ == "__main__":
