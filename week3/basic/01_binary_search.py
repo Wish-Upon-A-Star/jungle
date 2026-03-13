@@ -33,8 +33,24 @@ def binary_search(arr, target):
     Returns:
         target의 인덱스 (없으면 -1)
     """
+    if len(arr)==1:
+        if arr[0]==target:
+            return 0
+        return -1
     left = 0
+
     right = len(arr) - 1
+    mid=right//2
+    if arr[mid]==target:
+        return mid
+    if arr[mid]>target:
+        ans=binary_search(arr[left:mid],target)
+        if ans!=-1:
+            return ans
+    if arr[mid]<target:
+        ans=binary_search(arr[mid+1:right],target)
+        if ans!=-1:
+            return ans+mid+1
     
     # TODO: left가 right보다 작거나 같을 때까지 반복
     ## 중간 인덱스 계산
@@ -43,6 +59,7 @@ def binary_search(arr, target):
     ## target이 더 크면 left = mid + 1
     ## target이 더 작으면 right = mid - 1
     pass
+
     
     return -1
 
