@@ -1,9 +1,9 @@
-"""
+﻿"""
 [분할 정복 - 배열의 최댓값 찾기]
 
 문제 설명:
 - 분할 정복(Divide and Conquer) 방식으로 배열의 최댓값을 찾습니다.
-- 배열을 반으로 나누고, 각 부분의 최댓값을 구한 후 비교합니다.
+- 배열을 반으로 나누고 각 부분의 최댓값을 구한 뒤 비교합니다.
 
 입력:
 - arr: 정수 배열
@@ -18,8 +18,8 @@
 출력: 9
 
 힌트:
-- Base case: left == right일 때 arr[left] 반환
-- 배열을 반으로 나누어 재귀 호출
+- Base case: left == right이면 arr[left] 반환
+- 배열을 반으로 나눈 뒤 재귀 호출
 - 왼쪽과 오른쪽의 최댓값 중 큰 값 반환
 """
 
@@ -35,20 +35,22 @@ def find_max_divide_conquer(arr, left, right):
     Returns:
         최댓값
     """
+    if left>=right:
+        return arr[right]
     # TODO: base case - 원소가 하나면 그 값 반환
     pass
     
     # TODO: 중간 지점 계산
-    pass
+    mid=int((left+right)/2)
     
     # TODO: 왼쪽 절반의 최댓값
-    pass
+    lm=find_max_divide_conquer(arr,left,mid)
         
     # TODO: 오른쪽 절반의 최댓값
-    pass
+    rm=find_max_divide_conquer(arr,mid+1,right)
     
     # TODO: 둘 중 큰 값 반환
-    pass
+    return lm if lm > rm else rm
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -71,5 +73,3 @@ if __name__ == "__main__":
     result3 = find_max_divide_conquer(arr3, 0, len(arr3) - 1)
     print(f"배열: {arr3}")
     print(f"최댓값: {result3}")
-
-
