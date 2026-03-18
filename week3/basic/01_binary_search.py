@@ -50,7 +50,7 @@ def binary_search(arr, target):
     if arr[mid]<target:
         ans=binary_search(arr[mid+1:right],target)
         if ans!=-1:
-            return ans+mid+1
+            return ans+mid
     
     # TODO: left가 right보다 작거나 같을 때까지 반복
     ## 중간 인덱스 계산

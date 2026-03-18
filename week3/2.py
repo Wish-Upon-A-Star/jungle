@@ -7,7 +7,6 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         
         upnum=0
-
         iend=0
         jend=0
         ret=ListNode()
@@ -21,7 +20,8 @@ class Solution:
             if jend==0:
                 now+=j.val
             now+=upnum
-            
+            print(now)
+            print(upnum)
             ret.val=now%10
             ret.next=ListNode()
             upnum=now//10
